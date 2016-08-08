@@ -1,0 +1,121 @@
+<!doctype html>
+<title>Pictionary</title>
+<meta charset="utf-8">
+<meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS -->
+<style>
+	*{
+		box-sizing: border-box;
+	}
+
+	body{
+		color: #1E2835;
+		background-color: #f8f8f8;
+		font-size: 1.5em;
+	}
+
+	h1 {
+		background-color: #9ABBFF;
+		margin: 0 0 20px 0;
+		padding: 20px;
+		text-align: center;
+	}
+
+	#instruct{
+		text-align: center;
+		color: white;
+		font-family: sans-serif;
+		padding: 20px;
+		font-size: .75em;
+		height: 200px;
+		width: 400px;
+		background-color: #9ABBFF;
+		 position:absolute;
+  		top:50%;
+  		left:50%;
+  		margin-top:-100px; /* this is half the height of your div*/  
+  		margin-left:-200px; /*this is half of width of your div*/
+	}
+
+	#instruct p{
+		text-align: left;
+	}
+
+	#okConfirm{
+		border-style: solid;
+		color: white;
+		background-color: #9ABBFF;
+		border-width: 10px;
+		border-color: white;
+		padding: 10px;
+		border-radius: 25px;
+		margin-top: 10px;
+	}
+
+	#top-message {
+		text-align: center;
+		padding: 10px;
+	}
+
+	canvas {
+		width: 800px;
+		height: 600px;
+		border: 1px #C7CACD solid;
+		display: block;
+		margin: 0 auto;
+	}
+	#userGuess{
+		background-color: #9ABBFF;
+		color: white;
+		width: 400px;
+		display: block;
+		margin: 0 auto;
+	}
+	.guessTry{
+		text-align: center;
+		margin: 0 auto;
+	}
+	#clearCanvas{
+		background-color: red;
+		color: white;
+		padding: 10px;
+		border: none;
+		border-radius: 25px;
+		margin-top: 10px;
+	}
+</style>
+
+<!-- JS -->
+<script src="//code.jquery.com/jquery-2.1.0.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="main.js"></script>
+
+<div id="main">
+	<h1>Pictionary</h1>
+	
+	<div id="instruct">
+		<p>
+			First user to connect is drawer.<br>
+			Everyone else becomes a guesser.<br>
+			Correct guesser become the next drawer.<br>
+		</p>
+		<button type="button" id="okConfirm">OK</button>
+	</div>
+
+	<div id="top-message">
+		<div id="guess" style="display: none">
+			Make a Guess: <input type="text">
+		</div>
+		<div id="draw" style="display: none">
+			Draw Something:<span id="drawWord">DEFAULT</span>
+		</div>
+		<button type="button" id="clearCanvas">Clear Canvas</button>
+	</div>
+	<canvas id="canvas"></canvas>
+
+	<div id="userGuess">
+		
+	</div>
+</div>
